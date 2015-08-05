@@ -1,6 +1,14 @@
 
 console.log("...scripts loaded");
-function makeDeck() {
+
+function BlackjackGame() {
+  this.deck = this.makeDeck();
+  this.deck = this.shuffleDeck();
+}
+// TEST: *** blackjackGame() constructor returns a new game
+
+BlackjackGame.prototype.makeDeck = function makeDeck() {
+
   var deck = [];
   var faceCards = ["J", "Q", "K"];
   var ace = "A";
@@ -30,10 +38,22 @@ function makeDeck() {
   return deck;
 }
 
-$(document).on('ready', function(){
-  makeDeck();
-})
+// TEST: *** makeDeck() creates a deck and binds cards to value and image
 
+BlackjackGame.prototype.dealPlayerCards = function dealPlayerCards() {
 
+}
 
-// TEST: makeDeck() creates a deck and binds cards to value and image
+// TEST: dealPlayerCards() deals two random cards from deck
+
+BlackjackGame.prototype.shuffleDeck = function shuffleDeck() {
+  var shuffledDeck = [];
+  var j = this.deck.length;
+  for (var i = 0; i < j; i++){
+    var randomIndex = Math.floor(Math.random()*this.deck.length);
+    shuffledDeck.push(this.deck.splice(randomIndex,1)[0]);
+  }
+  return shuffledDeck;
+}
+
+// TEST: *** shuffleDeck() returns a shuffled deck
