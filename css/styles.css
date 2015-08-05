@@ -1,0 +1,102 @@
+body {
+  background: url("../images/BlackjackTable.gif") no-repeat;
+  background-size: cover;
+  background-color: #669A40;
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 90px;
+  height:135px;
+}
+#deck {
+  float: left;
+  clear:right;
+  width:98%;
+  margin: 2% 0 0 2%;
+}
+#playerCards {
+  width: 100%;
+  text-align: center;
+  margin-top:12%;
+}
+#dealerCards {
+  width: 100%;
+  text-align:center;
+  position: relative;
+  bottom: 7em;
+}
+.playerCard {
+  display:inline-block;
+}
+.dealerCard {
+  display:inline-block;
+}
+.button {
+  display: inline-block;
+}
+button {
+
+  border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 15px 30px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+#playerButtons {
+  width:100%;
+  text-align: center;
+  margin-top: 1%;
+  display: block;
+}
+#sideOfTable {
+  float:right;
+  display:block;
+  padding: 10% 0;
+  position: absolute;
+  right: 5%;
+  top: 45%;
+}
+#wallet {
+  margin-bottom: 10%;
+  color: white;
+  padding: 2%;
+}
+@media (max-width: 800px){
+  #sideOfTable {
+  display:inline;
+  position:absolute;
+  top: 25%;
+  right: 20%;
+  }
+  body {
+    background: #669A40;
+  }
+  button {
+    padding: 10px 20px;
+  }
+}

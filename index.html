@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blackjack!</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="javascripts/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/scripts.js"></script>
+  </head>
+  <body>
+    <div id="deck">
+      <img id="deckImage" src="images/classic-cards/BlueFacedown.png" alt="" />
+    </div>
+    <div id="dealerCards">
+      <div id="dealerCard1" class="dealerCard">
+        <img id="dealer1Image" src="images/classic-cards/BlueFacedown.png" alt="" />
+      </div>
+      <div id="dealerCard2" class="dealerCard">
+        <img id="dealer2Image" src="images/classic-cards/KD.png" alt="" />
+      </div>
+    </div>
+    <div id="playerCards">
+      <div id="playerCard1" class="playerCard">
+        <img id="player1Image" src="images/classic-cards/10D.png" alt="" />
+      </div>
+      <div id="playerCard2" class="playerCard">
+        <img id="player2Image" src="images/classic-cards/2H.png" alt="" />
+      </div>
+      <div class="hitCard">
+      </div>
+    </div>
+    <div id="sideOfTable">
+      <div id="wallet">
+        Money Remaining:
+      </div>
+      <div id="bet">
+        <input type="text" name="name" value="">
+        <button type="button" name="button">Bet</button>
+      </div>
+    </div>
+    <div id="playerButtons">
+      <div id="hit" class="button">
+        <button type="button" name="button">Hit</button>
+      </div>
+      <div id="stand" class="button">
+        <button type="button" name="button">Stand</button>
+      </div>
+      <div id="double-down" class="button">
+        <button type="button" name="button">Double-down</button>
+      </div>
+      <div id="split" class="button">
+        <button type="button" name="button">Split</button>
+      </div>
+    </div>
+  </body>
+</html>
