@@ -1,13 +1,12 @@
 body {
-  background: url("../images/BlackjackTable.gif") no-repeat;
-  background-size: cover;
-  background-color: #669A40;
+  background: url("../images/seamlessFelt.jpg") repeat;
+  /*background-color: #669A40;*/
   margin: 0;
   padding: 0;
 }
 img {
-  width: 90px;
-  height:135px;
+  width: 120px;
+  height:180px;
 }
 #deck {
   float: left;
@@ -18,7 +17,7 @@ img {
 #playerCards {
   width: 100%;
   text-align: center;
-  margin-top:12%;
+  margin-top:0%;
 }
 #dealerCards {
   width: 100%;
@@ -92,9 +91,6 @@ button:active {
   position:absolute;
   top: 25%;
   right: 20%;
-  }
-  body {
-    background: #669A40;
   }
   button {
     padding: 10px 20px;
