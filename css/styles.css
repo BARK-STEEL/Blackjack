@@ -112,7 +112,8 @@ button:active {
   }
   h1 {
     top:0%;
-    right: 15%;
+    right: 23%;
+    font-size:3em;
   }
   img {
     width:80px;
@@ -144,7 +145,8 @@ button:active {
     display:none;
   }
   #wallet {
-    margin-bottom:5%;s
+    margin-bottom:5%;
+    font-size: 1.5em;
   }
   #playerButtons {
     margin-top: 0%;
@@ -158,8 +160,8 @@ and (max-device-width : 347px) {
   }
   h1 {
     top:0%;
-    right: 15%;
-    font-size: 3.5em;
+    right: 20%;
+    font-size: 3em;
   }
   img {
     width:70px;
@@ -191,7 +193,8 @@ and (max-device-width : 347px) {
     display:none;
   }
   #wallet {
-    margin-bottom:5%;s
+    margin-bottom:5%;
+    font-size: 1.5em;
   }
   #playerButtons {
     margin-top: 0%;

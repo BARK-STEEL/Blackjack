@@ -75,30 +75,62 @@ BlackjackGame.prototype.dealRandomCard = function dealRandomCard() {
   return randomCard;
 };
 // TEST: *** dealRandomCard() returns a random card object from the deck;
+function isiPhone(){
+    return (
+        //Detect iPhone
+    //var isiPad = navigator.userAgent.match(/iPad/i) != null;
+        (navigator.platform.indexOf("iPhone") != -1) ||
+        //Detect iPod
+        (navigator.platform.indexOf("iPad") != -1)
+    );
+}
+
 BlackjackGame.prototype.bindBetButton = function bindBetButton() {
   var scope = this;
   var betButton = $("#bet>button");
   var playerButtons = $("#playerButtons");
   betButton.on('click', function(){
-    playerButtons.css({position: "absolute", bottom:"4%"});
-    var pcard1 = $("#playerCard1>img");
-    pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
-    pcard1.animate({top:"55%", left:"39%"});
-    var pcard2 = $("#playerCard2>img");
-    pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
-    setTimeout(function(){
-      pcard2.animate({top:"55%", left:"50%"})
-    }, 500);
-    var dcard1 = $("#dealerCard1>img");
-    dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
-    setTimeout(function(){
-      dcard1.animate({top:"15%", left:"39%"})
-    }, 1000);
-    var dcard2 = $("#dealerCard2>img");
-    dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
-    setTimeout(function(){
-      dcard2.animate({top:"15%", left:"50%"})
-    }, 1500);
+    if(isiPhone()){
+      playerButtons.css({position: "absolute", bottom:"4%"});
+      var pcard1 = $("#playerCard1>img");
+      pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
+      pcard1.animate({top:"65%", left:"30%"});
+      var pcard2 = $("#playerCard2>img");
+      pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
+      setTimeout(function(){
+        pcard2.animate({top:"65%", left:"50%"})
+      }, 500);
+      var dcard1 = $("#dealerCard1>img");
+      dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+      setTimeout(function(){
+        dcard1.animate({top:"25%", left:"30%"})
+      }, 1000);
+      var dcard2 = $("#dealerCard2>img");
+      dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
+      setTimeout(function(){
+        dcard2.animate({top:"25%", left:"50%"})
+      }, 1500);
+    } else {
+      playerButtons.css({position: "absolute", bottom:"4%"});
+      var pcard1 = $("#playerCard1>img");
+      pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
+      pcard1.animate({top:"55%", left:"39%"});
+      var pcard2 = $("#playerCard2>img");
+      pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
+      setTimeout(function(){
+        pcard2.animate({top:"55%", left:"50%"})
+      }, 500);
+      var dcard1 = $("#dealerCard1>img");
+      dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+      setTimeout(function(){
+        dcard1.animate({top:"15%", left:"39%"})
+      }, 1000);
+      var dcard2 = $("#dealerCard2>img");
+      dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
+      setTimeout(function(){
+        dcard2.animate({top:"15%", left:"50%"})
+      }, 1500);
+  };
   });
 };
 // TEST: *** bindBetButton() adds event listener for bet button
