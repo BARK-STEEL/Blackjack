@@ -95,12 +95,12 @@ button:active {
   padding: 2%;
 }
 
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 667px) {
   body {
     padding-top:100px;
   }
   h1 {
-    top:2%;
+    top:0%;
     right: 15%;
   }
   img {
@@ -117,6 +117,48 @@ button:active {
   button {
     padding: 10px 20px;
     font-size: 1em;
+  }
+  #playerCards {
+    margin-top: 10%;
+  }
+  #dealerCards {
+    margin-top: 40%;
+  }
+  #deck {
+    display:none;
+  }
+  #wallet {
+    margin-bottom:5%;s
+  }
+  #playerButtons {
+    margin-top: 5%;
+  }
+}
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 347px) {
+  body {
+    padding-top:100px;
+  }
+  h1 {
+    top:0%;
+    right: 15%;
+    font-size: 3.5em;
+  }
+  img {
+    width:60px;
+    height:90px;
+  }
+  #sideOfTable {
+  display:inline-block;
+  position:absolute;
+  width: 100%;
+  margin-top: 10%;
+  left:25%;
+  }
+  button {
+    padding: 5px 10px;
+    font-size: .7em;
   }
   #playerCards {
     margin-top: 10%;
