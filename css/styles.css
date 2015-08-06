@@ -3,6 +3,15 @@ body {
   /*background-color: #669A40;*/
   margin: 0;
   padding: 0;
+  font-family: 'Bangers', cursive;
+  color: white;
+
+}
+h1 {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  font-size: 4em;
 }
 img {
   width: 120px;
@@ -52,8 +61,8 @@ button {
    box-shadow: rgba(0,0,0,1) 0 1px 0;
    text-shadow: rgba(0,0,0,.4) 0 1px 0;
    color: white;
-   font-size: 14px;
-   font-family: Georgia, serif;
+   font-size: 1.5em;
+   font-family: 'Bangers', cursive;
    text-decoration: none;
    vertical-align: middle;
 }
@@ -85,12 +94,51 @@ button:active {
   color: white;
   padding: 2%;
 }
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+  body {
+    padding-top:100px;
+  }
+  h1 {
+    top:2%;
+    right: 15%;
+  }
+  img {
+    width:80px;
+    height:120px;
+  }
+  #sideOfTable {
+  display:inline-block;
+  position:absolute;
+  width: 100%;
+  margin-top: 10%;
+  left:25%;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+  #playerCards {
+    margin-top: 10%;
+  }
+  #dealerCards {
+    margin-top: 40%;
+  }
+  #deck {
+    display:none;
+  }
+  #wallet {
+    margin-bottom:5%;s
+  }
+  #playerButtons {
+    margin-top: 5%;
+  }
+}
 @media (max-width: 800px){
   #sideOfTable {
-  display:inline;
-  position:absolute;
-  top: 25%;
-  right: 20%;
+    display:inline-block;
+    top:32%;
+    right: 30%;
   }
   button {
     padding: 10px 20px;
