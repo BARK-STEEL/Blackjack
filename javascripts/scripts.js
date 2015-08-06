@@ -24,6 +24,7 @@ BlackjackGame.prototype.getHand = function getHand () {
   hand.cards.push(this.dealRandomCard());
   return hand;
 }
+
 // TEST: *** getHand() returns two random cards in a hand object
 
 Player.prototype.handValue = function handValue() {
@@ -74,8 +75,9 @@ BlackjackGame.prototype.init = function init() {
   var moneyLeft = $("#wallet");
   moneyLeft.text("Money Remaining: " + this.moneyRemaining);
   this.bindBetButton();
-
 };
+
+
 // TEST: *** init() sets up initial game state, with dealer and player cards
 
 BlackjackGame.prototype.shuffleDeck = function shuffleDeck(deck) {
@@ -95,7 +97,9 @@ BlackjackGame.prototype.dealRandomCard = function dealRandomCard() {
   var randomCard = this.deck.splice(randomIndex,1)[0];
   return randomCard;
 };
+
 // TEST: *** dealRandomCard() returns a random card object from the deck;
+
 function isiPhone(){
     return (
         //Detect iPhone
@@ -106,59 +110,116 @@ function isiPhone(){
     );
 }
 
+
+BlackjackGame.prototype.dealCards = function dealCards() {
+  var playerButtons = $("#playerButtons");
+  if(isiPhone()){
+    playerButtons.css({position: "absolute", bottom:"4%"});
+    var pcard1 = $("#playerCard1>img");
+    pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
+    pcard1.animate({top:"60%", left:"30%"});
+    var pcard2 = $("#playerCard2>img");
+    pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      pcard2.animate({top:"60%", left:"50%"})
+    }, 500);
+    var dcard1 = $("#dealerCard1>img");
+    dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      dcard1.animate({top:"20%", left:"30%"})
+    }, 1000);
+    var dcard2 = $("#dealerCard2>img");
+    dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      dcard2.animate({top:"20%", left:"50%"})
+    }, 1500);
+  } else {
+    playerButtons.css({position: "absolute", bottom:"4%"});
+    var pcard1 = $("#playerCard1>img");
+    pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
+    pcard1.animate({top:"55%", left:"39%"});
+    var pcard2 = $("#playerCard2>img");
+    pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      pcard2.animate({top:"55%", left:"50%"})
+    }, 500);
+    var dcard1 = $("#dealerCard1>img");
+    dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      dcard1.animate({top:"15%", left:"39%"})
+    }, 1000);
+    var dcard2 = $("#dealerCard2>img");
+    dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      dcard2.animate({top:"15%", left:"50%"})
+    }, 1500);
+  }
+};
+
+//TEST: *** dealCards() deals cards
+
 BlackjackGame.prototype.bindBetButton = function bindBetButton() {
   var scope = this;
   var betButton = $("#bet>button");
-  var playerButtons = $("#playerButtons");
   betButton.on('click', function(){
-    if(isiPhone()){
-      playerButtons.css({position: "absolute", bottom:"4%"});
-      var pcard1 = $("#playerCard1>img");
-      pcard1.attr("src", scope.player.hand[0].src).attr("class", "dealtPlayerCards");
-      pcard1.animate({top:"60%", left:"30%"});
-      var pcard2 = $("#playerCard2>img");
-      pcard2.attr("src", scope.player.hand[1].src).attr("class", "dealtPlayerCards");
-      setTimeout(function(){
-        pcard2.animate({top:"60%", left:"50%"})
-      }, 500);
-      var dcard1 = $("#dealerCard1>img");
-      dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
-      setTimeout(function(){
-        dcard1.animate({top:"20%", left:"30%"})
-      }, 1000);
-      var dcard2 = $("#dealerCard2>img");
-      dcard2.attr("src", scope.dealer.hand[1].src).attr("class", "dealtPlayerCards");
-      setTimeout(function(){
-        dcard2.animate({top:"20%", left:"50%"})
-      }, 1500);
-    } else {
-      playerButtons.css({position: "absolute", bottom:"4%"});
-      var pcard1 = $("#playerCard1>img");
-      pcard1.attr("src", scope.player.hand[0].src).attr("class", "dealtPlayerCards");
-      pcard1.animate({top:"55%", left:"39%"});
-      var pcard2 = $("#playerCard2>img");
-      pcard2.attr("src", scope.player.hand[1].src).attr("class", "dealtPlayerCards");
-      setTimeout(function(){
-        pcard2.animate({top:"55%", left:"50%"})
-      }, 500);
-      var dcard1 = $("#dealerCard1>img");
-      dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
-      setTimeout(function(){
-        dcard1.animate({top:"15%", left:"39%"})
-      }, 1000);
-      var dcard2 = $("#dealerCard2>img");
-      dcard2.attr("src", scope.dealer.hand[1].src).attr("class", "dealtPlayerCards");
-      setTimeout(function(){
-        dcard2.animate({top:"15%", left:"50%"})
-      }, 1500);
-  };
+    scope.dealCards();
   });
 };
 // TEST: *** bindBetButton() adds event listener for bet button
+
+BlackjackGame.prototype.bindHitButton = function bindHitButton() {
+
+
+
+
+}
+
 // TEST: bindHitButton() adds event listener for hit button
+
+BlackjackGame.prototype.bindStandButton = function bindStandButton() {
+
+
+
+
+
+}
+
 // TEST: bindStandButton() adds event listener for stand button
+
+BlackjackGame.prototype.bindSplitButton = function bindSplitButton() {
+
+
+
+
+}
+
 // TEST: bindSplitButton() adds event listener for split button
+
+BlackjackGame.prototype.bindDoubleDownButton = function bindDoubleDownButton() {
+
+
+
+
+}
+
 // TEST: bindDoubleDownButton() adds event listener for double down button
+
+
+// TEST: checkForAce() checks a card to see if it is an ace and askes user if they want it to be a 1 or an 11.
+
+BlackjackGame.prototype.compareHands = function compareHands() {
+  var playerTotal = this.player.hand.total;
+  var dealerTotal =  this.dealer.hand.total
+  if (playerTotal > dealerTotal) {
+    alert("You win!") ;
+  } else if (playerTotal < dealerTotal) {
+    alert("The dealer wins!");
+  } else if (playerTotal === dealerTotal) {
+    alert("You push!")
+  }
+}
+// TEST: compareHands() compares the dealer's hand to the player's hand and returns the winner.
+
 var game = new BlackjackGame()
 $(document).on('ready', function(){
   game.init();

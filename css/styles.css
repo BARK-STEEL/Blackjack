@@ -184,9 +184,10 @@ and (max-device-width : 347px) {
     top:10%;
   }
   #playerCards {
-    top: 65%;
+    top: 60%;
   }
   #dealerCards {
+    margin-top:10%;
   }
   #deck {
     display:none;
