@@ -136,7 +136,7 @@ button:active {
     font-size: 1em;
   }
   #playerCards {
-    margin-top: 10%;
+    margin-top: 12%;
   }
   #dealerCards {
     margin-top: 8%;
@@ -184,7 +184,7 @@ and (max-device-width : 347px) {
     top:10%;
   }
   #playerCards {
-    margin-top: 10%;
+    margin-top: 12%;
   }
   #dealerCards {
     margin-top: 10%;
