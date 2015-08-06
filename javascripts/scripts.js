@@ -94,7 +94,7 @@ BlackjackGame.prototype.bindBetButton = function bindBetButton() {
       playerButtons.css({position: "absolute", bottom:"4%"});
       var pcard1 = $("#playerCard1>img");
       pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
-      pcard1.animate({top:"65%", left:"30%"});
+      pcard1.animate({top:"60%", left:"30%"});
       var pcard2 = $("#playerCard2>img");
       pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
@@ -103,12 +103,12 @@ BlackjackGame.prototype.bindBetButton = function bindBetButton() {
       var dcard1 = $("#dealerCard1>img");
       dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
       setTimeout(function(){
-        dcard1.animate({top:"25%", left:"30%"})
+        dcard1.animate({top:"20%", left:"30%"})
       }, 1000);
       var dcard2 = $("#dealerCard2>img");
       dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
-        dcard2.animate({top:"25%", left:"50%"})
+        dcard2.animate({top:"20%", left:"50%"})
       }, 1500);
     } else {
       playerButtons.css({position: "absolute", bottom:"4%"});
