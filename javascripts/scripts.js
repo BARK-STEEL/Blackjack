@@ -3,17 +3,38 @@ console.log("...scripts loaded");
 
 function BlackjackGame() {
   this.deck = this.makeDeck();
-  this.deck = this.shuffleDeck();
-  this.playerCard1 = this.dealRandomCard();
-  this.playerCard2 = this.dealRandomCard();
-  this.dealerCard1 = this.dealRandomCard();
-  this.dealerCard2 = this.dealRandomCard();
-  this.playerTotal = this.playerCard1.value + this.playerCard2.value;
-  this.dealerTotal = this.dealerCard1.value + this.dealerCard2.value;
-  this.moneyRemaining = 100;
+  this.dealer = new Player(this.getHand());
+  this.player = new Player(this.getHand());
+  this.moneyRemaining = 500;
 }
 
-// TEST: *** blackjackGame() constructor returns a new game
+// TEST: *** BlackjackGame() constructor returns a new game
+
+function Player (hand) {
+  this.hand = hand
+  this.hand.total = this.handValue();
+}
+
+// TEST: *** Player constructor returns a player with a hand and adds the calculate hand total to the hand object.
+
+BlackjackGame.prototype.getHand = function getHand () {
+  var hand = {};
+  hand.cards = []
+  hand.cards.push(this.dealRandomCard());
+  hand.cards.push(this.dealRandomCard());
+  return hand;
+}
+// TEST: *** getHand() returns two random cards in a hand object
+
+Player.prototype.handValue = function handValue() {
+  var total = 0;
+  for (var i = 0; i < this.hand.cards.length; i++){
+    total += this.hand.cards[i].value;
+  }
+  return total;
+}
+
+//TEST: *** handValue() calculate the value of a hand
 
 BlackjackGame.prototype.makeDeck = function makeDeck() {
 
@@ -43,7 +64,7 @@ BlackjackGame.prototype.makeDeck = function makeDeck() {
       deck.push(card);
     }
   }
-  return deck;
+  return this.shuffleDeck(deck);
 };
 
 // TEST: *** makeDeck() creates a deck and binds cards to value and image
@@ -57,12 +78,12 @@ BlackjackGame.prototype.init = function init() {
 };
 // TEST: *** init() sets up initial game state, with dealer and player cards
 
-BlackjackGame.prototype.shuffleDeck = function shuffleDeck() {
+BlackjackGame.prototype.shuffleDeck = function shuffleDeck(deck) {
   var shuffledDeck = [];
-  var j = this.deck.length;
+  var j = deck.length;
   for (var i = 0; i < j; i++){
-    var randomIndex = Math.floor(Math.random()*this.deck.length);
-    shuffledDeck.push(this.deck.splice(randomIndex,1)[0]);
+    var randomIndex = Math.floor(Math.random()*deck.length);
+    shuffledDeck.push(deck.splice(randomIndex,1)[0]);
   }
   return shuffledDeck;
 };
@@ -93,10 +114,10 @@ BlackjackGame.prototype.bindBetButton = function bindBetButton() {
     if(isiPhone()){
       playerButtons.css({position: "absolute", bottom:"4%"});
       var pcard1 = $("#playerCard1>img");
-      pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
+      pcard1.attr("src", scope.player.hand[0].src).attr("class", "dealtPlayerCards");
       pcard1.animate({top:"60%", left:"30%"});
       var pcard2 = $("#playerCard2>img");
-      pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
+      pcard2.attr("src", scope.player.hand[1].src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
         pcard2.animate({top:"60%", left:"50%"})
       }, 500);
@@ -106,17 +127,17 @@ BlackjackGame.prototype.bindBetButton = function bindBetButton() {
         dcard1.animate({top:"20%", left:"30%"})
       }, 1000);
       var dcard2 = $("#dealerCard2>img");
-      dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
+      dcard2.attr("src", scope.dealer.hand[1].src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
         dcard2.animate({top:"20%", left:"50%"})
       }, 1500);
     } else {
       playerButtons.css({position: "absolute", bottom:"4%"});
       var pcard1 = $("#playerCard1>img");
-      pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
+      pcard1.attr("src", scope.player.hand[0].src).attr("class", "dealtPlayerCards");
       pcard1.animate({top:"55%", left:"39%"});
       var pcard2 = $("#playerCard2>img");
-      pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
+      pcard2.attr("src", scope.player.hand[1].src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
         pcard2.animate({top:"55%", left:"50%"})
       }, 500);
@@ -126,7 +147,7 @@ BlackjackGame.prototype.bindBetButton = function bindBetButton() {
         dcard1.animate({top:"15%", left:"39%"})
       }, 1000);
       var dcard2 = $("#dealerCard2>img");
-      dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
+      dcard2.attr("src", scope.dealer.hand[1].src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
         dcard2.animate({top:"15%", left:"50%"})
       }, 1500);
