@@ -98,7 +98,7 @@ BlackjackGame.prototype.bindBetButton = function bindBetButton() {
       var pcard2 = $("#playerCard2>img");
       pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
       setTimeout(function(){
-        pcard2.animate({top:"65%", left:"50%"})
+        pcard2.animate({top:"60%", left:"50%"})
       }, 500);
       var dcard1 = $("#dealerCard1>img");
       dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
