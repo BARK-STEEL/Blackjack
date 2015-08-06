@@ -12,6 +12,7 @@ function BlackjackGame() {
   this.dealerTotal = this.dealerCard1.value + this.dealerCard2.value;
   this.moneyRemaining = 100;
 }
+
 // TEST: *** blackjackGame() constructor returns a new game
 
 BlackjackGame.prototype.makeDeck = function makeDeck() {
@@ -43,30 +44,18 @@ BlackjackGame.prototype.makeDeck = function makeDeck() {
     }
   }
   return deck;
-}
+};
 
 // TEST: *** makeDeck() creates a deck and binds cards to value and image
 
 BlackjackGame.prototype.init = function init() {
-  // <div id="dealerCards">
-  //   <div id="dealerCard1" class="dealerCard">
-  var dealerCards = $("#dealerCards");
-  var dealer1 = $("<div>").attr("id", "dealerCard1").addClass("dealerCard");
-  dealer1.append($("<img>").attr("id", "dealer1Image").attr("src", "images/classic-cards/BlueFacedown.png"));
-  var dealer2 = $("<div>").attr("id", "dealerCard2").addClass("dealerCard");
-  dealer2.append($("<img>").attr("id", "dealer2Image").attr("src", this.dealerCard2.src));
-  dealerCards.append(dealer1);
-  dealerCards.append(dealer2);
-  var playerCards = $("#playerCards");
-  var player1 = $("<div>").attr("id", "playerCard1").addClass("playerCard");
-  player1.append($("<img>").attr("id", "player1Image").attr("src", this.playerCard1.src));
-  var player2 = $("<div>").attr("id", "playerCard2").addClass("playerCard");
-  player2.append($("<img>").attr("id", "player2Image").attr("src", this.playerCard2.src));
-  playerCards.append(player1);
-  playerCards.append(player2);
-}
 
-// TEST: init() sets up initial game state, with dealer and player cards
+  var moneyLeft = $("#wallet");
+  moneyLeft.text("Money Remaining: " + this.moneyRemaining);
+  this.bindBetButton();
+
+};
+// TEST: *** init() sets up initial game state, with dealer and player cards
 
 BlackjackGame.prototype.shuffleDeck = function shuffleDeck() {
   var shuffledDeck = [];
@@ -76,7 +65,7 @@ BlackjackGame.prototype.shuffleDeck = function shuffleDeck() {
     shuffledDeck.push(this.deck.splice(randomIndex,1)[0]);
   }
   return shuffledDeck;
-}
+};
 
 // TEST: *** shuffleDeck() returns a shuffled deck
 
@@ -84,8 +73,39 @@ BlackjackGame.prototype.dealRandomCard = function dealRandomCard() {
   var randomIndex = Math.floor(Math.random()*this.deck.length);
   var randomCard = this.deck.splice(randomIndex,1)[0];
   return randomCard;
-}
+};
 // TEST: *** dealRandomCard() returns a random card object from the deck;
+BlackjackGame.prototype.bindBetButton = function bindBetButton() {
+  var scope = this;
+  var betButton = $("#bet>button");
+  var playerButtons = $("#playerButtons");
+  betButton.on('click', function(){
+    playerButtons.css({position: "absolute", bottom:"4%"});
+    var pcard1 = $("#playerCard1>img");
+    pcard1.attr("src", scope.playerCard1.src).attr("class", "dealtPlayerCards");
+    pcard1.animate({top:"55%", left:"39%"});
+    var pcard2 = $("#playerCard2>img");
+    pcard2.attr("src", scope.playerCard2.src).attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      pcard2.animate({top:"55%", left:"50%"})
+    }, 500);
+    var dcard1 = $("#dealerCard1>img");
+    dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      dcard1.animate({top:"15%", left:"39%"})
+    }, 1000);
+    var dcard2 = $("#dealerCard2>img");
+    dcard2.attr("src", scope.dealerCard1.src).attr("class", "dealtPlayerCards");
+    setTimeout(function(){
+      dcard2.animate({top:"15%", left:"50%"})
+    }, 1500);
+  });
+};
+// TEST: *** bindBetButton() adds event listener for bet button
+// TEST: bindHitButton() adds event listener for hit button
+// TEST: bindStandButton() adds event listener for stand button
+// TEST: bindSplitButton() adds event listener for split button
+// TEST: bindDoubleDownButton() adds event listener for double down button
 var game = new BlackjackGame()
 $(document).on('ready', function(){
   game.init();
