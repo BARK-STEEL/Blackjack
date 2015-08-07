@@ -180,8 +180,18 @@ button:active {
     display:none;
   }
   #wallet {
+    margin: 5%;
+    width:40%;
     margin-bottom:2%;
     font-size: 1.1em;
+    text-align: left;
+  }
+  #betAmount {
+    float:left;
+    color: white;
+    font-size: 1.1em;
+    margin-bottom:0;
+    margin-left:5%;
   }
   #playerButtons {
     margin-top: 0%;
@@ -228,8 +238,19 @@ and (max-device-width : 347px) {
     display:none;
   }
   #wallet {
+    display:inline-block;
+    width:30%;
     margin-bottom:2%;
     font-size: 1.1em;
+    margin-right:0;
+    text-align: left;
+  }
+  #betAmount {
+    display: inline-block;
+    color: white;
+    font-size: 1.1em;
+    margin-bottom:0;
+    margin-left:5%;
   }
   #playerButtons {
     margin-top: 0%;
