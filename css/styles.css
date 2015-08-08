@@ -187,6 +187,7 @@ button:active {
   width: 100%;
   margin-top: 15%;
   left:5%;
+  top: 30%;
   }
   button {
     padding: 10px 20px;
@@ -221,6 +222,11 @@ button:active {
   #messages {
     font-size: 4em;
   }
+  #increaseBet, #decreaseBet {
+    font-size: 1.4em;
+    padding-top:.3%;
+    padding-bottom:.3%;
+  }
 }
 @media only screen
 and (min-device-width : 320px)
@@ -248,6 +254,7 @@ and (max-device-width : 347px) {
   width: 100%;
   margin-top:15%;
   left:5%;
+  top: 30%;
   }
   button {
     padding: 5px 10px;
@@ -302,7 +309,7 @@ and (max-device-width : 347px) {
     position: absolute;
   }
 }
-@media (max-width: 800px){
+@media only screen (max-width: 800px){
   #sideOfTable {
     display:inline-block;
     width:100%;
@@ -353,7 +360,7 @@ and (max-device-width : 347px) {
     margin-left:10px;
   }
 }
-@media (max-width: 600px){
+@media only screen (max-width: 600px){
   #deck {
     display:none;
   }
