@@ -259,7 +259,7 @@ and (max-device-width : 347px) {
   #wallet {
     display:inline-block;
     width:35%;
-    margin-bottom:2%;
+    margin-bottom:0%;
     font-size: 1.1em;
     margin-right:5%;
     margin-top:5%;
@@ -277,6 +277,12 @@ and (max-device-width : 347px) {
   }
   #increaseBet, #decreaseBet {
     font-size: 1.4em;
+  }
+  #dealCards {
+    padding: 2%;
+  }
+  #betDiv {
+    margin-right: 8%;
   }
 }
 @media (max-width: 800px){
