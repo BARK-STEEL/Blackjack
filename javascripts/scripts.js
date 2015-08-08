@@ -279,18 +279,22 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
       }
     }
   }
-  setTimeout(function(){
-    if (scope.isBusted(playerTakingCard)) {
+  if (scope.isBusted(playerTakingCard) && playerTakingCard === scope.player) {
+    setTimeout(function() {
       scope.outcomeMessage("BUSTED!");
+      scope.playerLoses();
+    }, 1000);
       if (scope.bankRoll === 0) {
-        scope.outcomeMessage("You're out of money!");
-      } else if (playerTakingCard === scope.player){
-        scope.playerLoses();
+        setTimeout(function() {
+          scope.outcomeMessage("You're out of money!");
+          var playAgain = prompt("Would you like to buy back in? Y for Yes or N for No");
+          if (playAgain.toUpperCase() === "Y") {
+            location.reload();
+          }
+        },2000);
       }
-    }
-  }, 500);
+  }
 };
-
 // TEST: *** addCard() adds a card to a player's hand
 
 BlackjackGame.prototype.outcomeMessage = function outcomeMessage(outcome) {
@@ -336,7 +340,7 @@ BlackjackGame.prototype.bindDoubleDownButton = function bindDoubleDownButton() {
 BlackjackGame.prototype.compareHands = function compareHands() {
   var playerTotal = this.player.hand.total;
   var dealerTotal =  this.dealer.hand.total
-  if (playerTotal > dealerTotal) {
+  if (playerTotal > dealerTotal || dealerTotal > 21) {
     this.playerWins();
   } else if (playerTotal < dealerTotal) {
     this.outcomeMessage("DEALER WINS!")
