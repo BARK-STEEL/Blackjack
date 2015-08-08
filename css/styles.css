@@ -218,6 +218,9 @@ button:active {
   #playerButtons {
     margin-top: 0%;
   }
+  #messages {
+    font-size: 4em;
+  }
 }
 @media only screen
 and (min-device-width : 320px)
@@ -291,6 +294,12 @@ and (max-device-width : 347px) {
   }
   #betDiv {
     margin-right: 8%;
+  }
+  #messages {
+    font-size: 4em;
+  }
+  .playerHitCard, .dealerHitCard {
+    position: absolute;
   }
 }
 @media (max-width: 800px){
