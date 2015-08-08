@@ -12,6 +12,11 @@ h1 {
   top: 15%;
   font-size: 4em;
 }
+h2 {
+  position: absolute;
+  right: 12%;
+  top: 30%;
+}
 img {
   width: 120px;
   height:180px;
@@ -54,7 +59,6 @@ img {
 }
 #playerHitCards {
   width: 38%;
-  height: 100%;
   position: relative;
   float:left;
 }
@@ -67,7 +71,6 @@ img {
 }
 #dealerHitCards {
   width: 38%;
-  height: 100%;
   position: relative;
   float:left;
 }
@@ -150,6 +153,11 @@ button:active {
     right: 21%;
     font-size:3em;
   }
+  h2 {
+    top: 10%;
+    right:21%;
+    font-size: 1em;
+  }
   img {
     width:80px;
     height:120px;
@@ -181,7 +189,7 @@ button:active {
   }
   #wallet {
     margin: 5%;
-    width:40%;
+    width:45%;
     margin-bottom:2%;
     font-size: 1.1em;
     text-align: left;
@@ -204,9 +212,14 @@ and (max-device-width : 347px) {
     padding-top:100px;
   }
   h1 {
-    top:0%;
+    top:-5%;
     right: 20%;
     font-size: 3em;
+  }
+  h2 {
+    top: 10%;
+    right:30%;
+    font-size: 1em;
   }
   img {
     width:70px;
@@ -239,10 +252,10 @@ and (max-device-width : 347px) {
   }
   #wallet {
     display:inline-block;
-    width:30%;
+    width:35%;
     margin-bottom:2%;
     font-size: 1.1em;
-    margin-right:0;
+    margin-right:5%;
     text-align: left;
   }
   #betAmount {
@@ -250,7 +263,6 @@ and (max-device-width : 347px) {
     color: white;
     font-size: 1.1em;
     margin-bottom:0;
-    margin-left:5%;
   }
   #playerButtons {
     margin-top: 0%;
