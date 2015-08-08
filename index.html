@@ -6,7 +6,9 @@
     <title>Blackjack!</title>
     <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.css" media="screen" title="no title" charset="utf-8">
     <script type="text/javascript" src="javascripts/jquery.js"></script>
+    <script type="text/javascript" src="jquery-ui-1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="javascripts/scripts.js"></script>
   </head>
   <body>
@@ -18,7 +20,7 @@
     <div id="dealerCards">
       <div id="dealerHitCards">
       </div>
-      <div id="dealerCard1" class="dealerCard card">
+      <div id="dealerCard1" class="dealerCard">
         <img src="images/emptyCard.png" alt="" />
       </div>
       <div id="dealerCard2" class="dealerCard card">
@@ -28,10 +30,10 @@
     <div id="playerCards">
       <div id="playerHitCards">
       </div>
-      <div id="playerCard1" class="playerCard card">
+      <div id="playerCard1" class="playerCard">
         <img src="images/emptyCard.png" alt="" />
       </div>
-      <div id="playerCard2" class="playerCard card">
+      <div id="playerCard2" class="playerCard">
         <img src="images/emptyCard.png" alt="" />
       </div>
     </div>
@@ -59,6 +61,9 @@
       <div id="split" class="button">
         <button type="button" name="button">Split</button>
       </div>
+    </div>
+    <div id="messages">
+      BUSTED!
     </div>
   </body>
 </html>

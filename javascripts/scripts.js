@@ -123,8 +123,7 @@ BlackjackGame.prototype.dealCards = function dealCards() {
   this.displayDealtCards();
   setTimeout(function() {
     if (scope.isBlackjack()) {
-      alert("You got Blackjack!");
-      scope.playerWins();
+      scope.blackjack();
     }
   }, 2000);
   this.bindHitButton();
@@ -134,6 +133,26 @@ BlackjackGame.prototype.dealCards = function dealCards() {
 //TEST: *** dealCards() deals cards
 
 BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
+  var pcard1 = $("#playerCard1>img");
+  pcard1.html("").css({
+  position: "fixed",
+  left: "2.1%",
+  top:"4%"});
+  var pcard2 = $("#playerCard2>img");
+  pcard2.html("").css({
+  position: "fixed",
+  left: "2.1%",
+  top:"4%"});
+  var dcard1 = $("#dealerCard1>img");
+  dcard1.html("").css({
+  position: "fixed",
+  left: "2.1%",
+  top:"4%"});
+  var dcard2 = $("#dealerCard2>img");
+  dcard2.html("").css({
+  position: "fixed",
+  left: "2.1%",
+  top:"4%"});
   var playerHitCards = $("#playerHitCards");
   playerHitCards.html("");
   var dealerHitCards = $("#dealerHitCards");
@@ -141,40 +160,32 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   var playerButtons = $("#playerButtons");
   if(isiPhone()){
     playerButtons.css({position: "absolute", bottom:"4%"});
-    var pcard1 = $("#playerCard1>img");
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
     pcard1.animate({top:"60%", left:"30%"});
-    var pcard2 = $("#playerCard2>img");
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
       pcard2.animate({top:"60%", left:"50%"})
     }, 500);
-    var dcard1 = $("#dealerCard1>img");
     dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"20%", left:"30%"})
     }, 1000);
-    var dcard2 = $("#dealerCard2>img");
     dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard2.animate({top:"20%", left:"50%"})
     }, 1500);
   } else {
     playerButtons.css({position: "absolute", bottom:"4%"});
-    var pcard1 = $("#playerCard1>img");
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
     pcard1.animate({top:"55%", left:"39%"});
-    var pcard2 = $("#playerCard2>img");
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
       pcard2.animate({top:"55%", left:"50%"})
     }, 500);
-    var dcard1 = $("#dealerCard1>img");
     dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"15%", left:"39%"})
     }, 1000);
-    var dcard2 = $("#dealerCard2>img");
     dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard2.animate({top:"15%", left:"50%"})
@@ -182,7 +193,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   }
 };
 
-//TEST: ***displayDealtCards() animates the original deal
+//TEST: *** displayDealtCards() animates the original deal
 
 BlackjackGame.prototype.increaseBetSize = function increaseBetSize() {
   if (this.bet < this.bankRoll){
@@ -191,7 +202,7 @@ BlackjackGame.prototype.increaseBetSize = function increaseBetSize() {
   }
 }
 
-//TEST: increaseBetSize() increases bet size and updates bet amount
+//TEST: *** increaseBetSize() increases bet size and updates bet amount
 
 BlackjackGame.prototype.decreaseBetSize = function decreaseBetSize() {
   if (this.bet >= 20) {
@@ -200,7 +211,7 @@ BlackjackGame.prototype.decreaseBetSize = function decreaseBetSize() {
   }
 }
 
-//TEST: decreaseBetSize() decreases bet size and updates bet amount
+//TEST: *** decreaseBetSize() decreases bet size and updates bet amount
 
 
 
@@ -224,7 +235,7 @@ BlackjackGame.prototype.bindIncreaseBetButton = function bindIncreaseBetButton()
   })
 }
 
-//TEST: bindIncreaseBetButton()
+//TEST: *** bindIncreaseBetButton()
 
 BlackjackGame.prototype.bindDecreaseBetButton = function bindDecreaseBetButton() {
   var scope = this;
@@ -234,7 +245,7 @@ BlackjackGame.prototype.bindDecreaseBetButton = function bindDecreaseBetButton()
   })
 }
 
-//TEST: bindDecreaseBetButton()
+//TEST: *** bindDecreaseBetButton()
 
 BlackjackGame.prototype.bindHitButton = function bindHitButton() {
   var scope = this;
@@ -252,10 +263,12 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
   var cardDiv = $(cardDivId);
   var newCardObject = this.dealRandomCard();
   playerTakingCard.hand.cards.push(newCardObject);
-  var newCard = $("<div>").addClass(playerTakingCard.name + "HitCard");
+  var newCard = $("<div>").addClass("dealtPlayerCards");
   newCard.append($("<img>").attr("src", newCardObject.src));
   cardDiv.append(newCard);
-  newCard.animate()
+  setTimeout(function(){
+    newCard.switchClass("dealtPlayerCards", playerTakingCard.name + "HitCard", 1000);
+  },300);
   playerTakingCard.hand.total = playerTakingCard.handValue();
   if (this.isBusted(playerTakingCard)) {
     var playerHand = playerTakingCard.hand.cards;
@@ -269,13 +282,25 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
   }
   setTimeout(function(){
     if (scope.isBusted(playerTakingCard)) {
-      alert("Busted!");
+      scope.outcomeMessage("BUSTED!");
+      if (playerTakingCard === scope.dealer) {
+        scope.playerWins();
+      }
       scope.removeListeners();
     }
   }, 500);
 };
 
-// TEST: addCard() adds a card to a player's hand
+// TEST: *** addCard() adds a card to a player's hand
+
+BlackjackGame.prototype.outcomeMessage = function outcomeMessage(outcome) {
+  var message = $("#messages").text(outcome).css({display:"block"});
+  setTimeout(function(){
+    message.css({display:"none"});
+  }, 1500);
+}
+
+// TEST: *** outcomeMessage() displays outcome of game
 
 BlackjackGame.prototype.bindStandButton = function bindStandButton() {
   var scope = this;
@@ -313,12 +338,13 @@ BlackjackGame.prototype.compareHands = function compareHands() {
   var playerTotal = this.player.hand.total;
   var dealerTotal =  this.dealer.hand.total
   if (playerTotal > dealerTotal) {
-    alert("You win!") ;
     this.playerWins();
   } else if (playerTotal < dealerTotal) {
-    alert("The dealer wins!");
+    this.outcomeMessage("DEALER WINS!")
   } else if (playerTotal === dealerTotal) {
-    alert("You push!")
+    this.outcomeMessage("PUSH!");
+    this.bankRoll += this.bet;
+    this.updateBankRoll();
   }
 };
 // TEST: *** compareHands() compares the dealer's hand to the player's hand, returns the winner, and shows the dealer's second card.
@@ -336,11 +362,21 @@ BlackjackGame.prototype.isBusted = function isBusted(playerorDealer) {
 //TEST: *** isBusted() checks the players hand to see if it is over 21
 
 BlackjackGame.prototype.playerWins = function playerWins () {
+  this.outcomeMessage("YOU WIN!");
   this.bankRoll += 2*this.bet;
   this.updateBankRoll();
   this.removeListeners();
 };
 //TEST: *** playerWins() adds winnings to bankRoll
+
+BlackjackGame.prototype.blackjack = function blackjack() {
+  this.outcomeMessage("BLACKJACK!!!");
+  this.bankRoll += 2.5*this.bet;
+  this.updateBankRoll();
+  this.removeListeners();
+};
+
+//TEST: *** blackjack() adds 3/2 winnings after hitting a blackjack
 
 BlackjackGame.prototype.updateBankRoll = function updateBankRoll() {
   var wallet = $("#wallet");
@@ -364,9 +400,11 @@ BlackjackGame.prototype.dealerHand = function dealerHand() {
         scope.addCard(scope.dealer);
     };
   }, 500);
-  setTimeout(function(){
-    scope.compareHands();
-  }, 1000);
+  if (this.dealer.hand.total < 22) {
+    setTimeout(function(){
+      scope.compareHands();
+    }, 1000);
+  }
 };
 
 //TEST: *** dealerHand() adds cards to dealer hand until outcome is reached
@@ -376,7 +414,7 @@ BlackjackGame.prototype.removeListeners = function removeListeners() {
   $("#stand>button").off('click');
 }
 
-//TEST: removeListeners resets listeners
+//TEST: *** removeListeners resets listeners
 
 var game = new BlackjackGame()
 $(document).on('ready', function(){
