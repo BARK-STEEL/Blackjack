@@ -5,6 +5,7 @@ body {
   padding: 0;
   font-family: 'Bangers', cursive;
   color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 h1 {
   position: absolute;
@@ -144,6 +145,11 @@ button:active {
   font-size: 2em;
   margin-bottom:2%;
 }
+#increaseBet, #decreaseBet {
+  font-size: 3em;
+  padding-top:.3%;
+  padding-bottom:.3%;
+}
 @media only screen and (min-device-width : 347px) and (max-device-width : 667px) {
   body {
     padding-top:100px;
@@ -213,7 +219,7 @@ and (max-device-width : 347px) {
   }
   h1 {
     top:-5%;
-    right: 20%;
+    right: 15%;
     font-size: 3em;
   }
   h2 {
@@ -229,7 +235,7 @@ and (max-device-width : 347px) {
   display:inline-block;
   position:absolute;
   width: 100%;
-  margin-top: 17%;
+  margin-top:15%;
   left:5%;
   }
   button {
@@ -256,6 +262,7 @@ and (max-device-width : 347px) {
     margin-bottom:2%;
     font-size: 1.1em;
     margin-right:5%;
+    margin-top:5%;
     text-align: left;
   }
   #betAmount {
@@ -263,9 +270,13 @@ and (max-device-width : 347px) {
     color: white;
     font-size: 1.1em;
     margin-bottom:0;
+    margin-right:10%;
   }
   #playerButtons {
     margin-top: 0%;
+  }
+  #increaseBet, #decreaseBet {
+    font-size: 1.4em;
   }
 }
 @media (max-width: 800px){

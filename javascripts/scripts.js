@@ -6,7 +6,7 @@ function BlackjackGame() {
   this.dealer = new Player("dealer");
   this.player = new Player("player");
   this.bankRoll = 500;
-  this.bet = "";
+  this.bet = 10;
 };
 
 // TEST: *** BlackjackGame() constructor returns a new game
@@ -75,7 +75,10 @@ BlackjackGame.prototype.makeDeck = function makeDeck() {
 BlackjackGame.prototype.init = function init() {
 
   this.updateBankRoll();
-  this.bindBetButton();
+  this.updateBetAmount();
+  this.bindDealButton();
+  this.bindIncreaseBetButton();
+  this.bindDecreaseBetButton();
 };
 
 
@@ -178,25 +181,60 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     }, 1500);
   }
 };
-BlackjackGame.prototype.bindBetButton = function bindBetButton() {
+
+//TEST: ***displayDealtCards() animates the original deal
+
+BlackjackGame.prototype.increaseBetSize = function increaseBetSize() {
+  if (this.bet < this.bankRoll){
+    this.bet += 10;
+    this.updateBetAmount();
+  }
+}
+
+//TEST: increaseBetSize() increases bet size and updates bet amount
+
+BlackjackGame.prototype.decreaseBetSize = function decreaseBetSize() {
+  if (this.bet >= 20) {
+    this.bet -= 10;
+    this.updateBetAmount();
+  }
+}
+
+//TEST: decreaseBetSize() decreases bet size and updates bet amount
+
+
+
+BlackjackGame.prototype.bindDealButton = function bindDealButton() {
   var scope = this;
-  var betButton = $("#betDiv>button");
-  betButton.on('click', function(){
-    var betString = $('#betDiv>input');
-    if (betString.val() === "") {
-      alert ("Please make a bet");
-    } else {
-      scope.dealCards();
-      scope.bet = parseInt(betString.val());
-      var betAmount = $('#betAmount').text("Bet: " + scope.bet);
-      scope.bankRoll -= scope.bet;
-      scope.updateBankRoll();
-      betString.val("");
-    }
+  var dealButton = $("#dealCards");
+  dealButton.on('click', function(){
+    scope.dealCards();
+    scope.bankRoll -= scope.bet;
+    scope.updateBankRoll();
   });
 };
 
 // TEST: *** bindBetButton() adds event listener for bet button
+
+BlackjackGame.prototype.bindIncreaseBetButton = function bindIncreaseBetButton() {
+  var scope = this;
+  var increaseBetButton = $("#increaseBet");
+  increaseBetButton.on('click', function(){
+    scope.increaseBetSize();
+  })
+}
+
+//TEST: bindIncreaseBetButton()
+
+BlackjackGame.prototype.bindDecreaseBetButton = function bindDecreaseBetButton() {
+  var scope = this;
+  var decreaseBetButton = $("#decreaseBet");
+  decreaseBetButton.on('click', function(){
+    scope.decreaseBetSize();
+  })
+}
+
+//TEST: bindDecreaseBetButton()
 
 BlackjackGame.prototype.bindHitButton = function bindHitButton() {
   var scope = this;
@@ -306,9 +344,16 @@ BlackjackGame.prototype.playerWins = function playerWins () {
 
 BlackjackGame.prototype.updateBankRoll = function updateBankRoll() {
   var wallet = $("#wallet");
-  wallet.text("Bankroll: " + this.bankRoll);
+  wallet.text("Bankroll: $" + this.bankRoll);
 };
+
 //TEST: *** updateBankroll() updates the bankroll on screen
+
+BlackjackGame.prototype.updateBetAmount = function updateBetAmount() {
+  var betSize = $("#betAmount");
+  betSize.text("Bet: $" + this.bet);
+};
+//TEST: *** updateBetAmount() updates the bet amount on screen
 
 BlackjackGame.prototype.dealerHand = function dealerHand() {
   var scope = this;
