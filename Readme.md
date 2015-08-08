@@ -3,7 +3,8 @@
 - Blackjack is a game of chance
 - The aim of the game is to obtain a higher score than the dealer, without going over 21
 
-<!-- Screenshot -->
+![Image of Blackjack](images/blackjackIphoneGif.gif)
+
 
 ##User Stories
 
