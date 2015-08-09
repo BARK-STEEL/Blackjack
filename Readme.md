@@ -9,8 +9,10 @@
   * An unmatched blackjack on the initial deal pays 3/2 odds
   * The player has the option to "double-down", or double the bet and receive one additional card
   * A tie or push results in the bet being returned to the player
+- When the player goes broke, they are given the option to buy back in
 - Enhanced functionality will be included in later versions of the app, such as the option to "split" -  or play two separate hands when dealt two cards with the same number
-- The app is available on laptop, desktop, iPhone and iPad
+- Later versions will also provide complete functionality on all portable devices
+- Currently, the app is available on laptop, desktop, and iPhone(portrait)
 
 ---
 

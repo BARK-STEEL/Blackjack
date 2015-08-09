@@ -441,7 +441,7 @@ BlackjackGame.prototype.playerLoses = function playerLoses() {
   }
 }
 
-// TEST: playerLoses() resets Event Listeners
+// TEST: *** playerLoses() resets Event Listeners
 
 BlackjackGame.prototype.playersPush = function playersPush() {
   this.outcomeMessage("PUSH!");
