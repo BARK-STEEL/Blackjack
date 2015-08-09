@@ -176,7 +176,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     setTimeout(function(){
       pcard2.animate({top:"60%", left:"50%"})
     }, 500);
-    dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
+    dcard1.attr("src", "images/redCardBack.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"20%", left:"30%"})
     }, 1000);
@@ -192,7 +192,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     setTimeout(function(){
       pcard2.animate({top:"55%", left:"50%"})
     }, 500);
-    dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
+    dcard1.attr("src", "images/redCardBack.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"15%", left:"39%"})
     }, 1000);
@@ -318,24 +318,15 @@ BlackjackGame.prototype.bindStandButton = function bindStandButton() {
 
 BlackjackGame.prototype.bindSplitButton = function bindSplitButton() {
 
-
-
-
 };
 
 // TEST: bindSplitButton() adds event listener for split button
 
 BlackjackGame.prototype.bindDoubleDownButton = function bindDoubleDownButton() {
 
-
-
-
 };
 
 // TEST: bindDoubleDownButton() adds event listener for double down button
-
-
-// TEST: checkForAce() checks a card to see if it is an ace and askes user if they want it to be a 1 or an 11.
 
 BlackjackGame.prototype.compareHands = function compareHands() {
   var playerTotal = this.player.hand.total;
@@ -358,7 +349,7 @@ BlackjackGame.prototype.playersPush = function playersPush() {
   this.resetListeners();
 }
 
-//TEST: push displays push message and returns money to bankroll
+//TEST: *** push displays push message and returns money to bankroll
 BlackjackGame.prototype.isBlackjack = function isBlackjack() {
   return this.player.hand.total === 21;
 };
@@ -429,9 +420,10 @@ BlackjackGame.prototype.resetListeners = function resetListeners() {
   this.bindDecreaseBetButton();
 }
 
-//TEST: *** removeListeners resets listeners
+//TEST: *** resetListeners resets listeners
 
-var game = new BlackjackGame()
+
 $(document).on('ready', function(){
+  var game = new BlackjackGame()
   game.init();
 });

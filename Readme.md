@@ -37,6 +37,7 @@
 * Javascript
   * jQuery
   * jQueryUI
+
 <p align="center">
 ![Image of Blackjack](images/BJIphone.gif)
 </p>
