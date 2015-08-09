@@ -260,11 +260,11 @@ and (max-device-width : 347px) {
     padding: 5px 10px;
     font-size: .7em;
   }
-  .dealtPlayerCards {
+  /*.dealtPlayerCards {
     position: fixed;
     left: 2.1%;
     top:10%;
-  }
+  }*/
   #playerCards {
     top: 60%;
   }
@@ -307,13 +307,10 @@ and (max-device-width : 347px) {
   }
   #playerHitCards, #dealerHitCards {
     width:100%;
-    z-index:-1;
   }
   .playerHitCard>img, .dealerHitCard>img {
-    display:inline;
-    position: relative;
-    margin-right: -20%;
-    z-index:-1;
+    /*position: relative;
+    margin-right: -20%;*/
   }
 }
 @media (min-width: 600px) and (max-width: 800px){

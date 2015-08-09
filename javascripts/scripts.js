@@ -171,35 +171,34 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   if(isiPhone()){
     playerButtons.css({position: "absolute", bottom:"4%"});
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
-    pcard1.animate({top:"60%", left:"30%", position: "absolute"});
+    pcard1.animate({top:"60%", left:"30%"});
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      pcard2.animate({top:"60%", left:"50%", position: "absolute"})
+      pcard2.animate({top:"60%", left:"50%"})
     }, 500);
     dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard1.animate({top:"20%", left:"30%", position: "absolute"})
+      dcard1.animate({top:"20%", left:"30%"})
     }, 1000);
     dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard2.animate({top:"20%", left:"50%", position: "absolute"})
+      dcard2.animate({top:"20%", left:"50%"})
     }, 1500);
   } else {
     playerButtons.css({position: "absolute", bottom:"4%"});
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
-    pcard1.animate({top:"55%", left:"39%",position: "relative"});
-    // pcard1.css({position: "absolute"})
+    pcard1.animate({top:"55%", left:"39%"});
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      pcard2.animate({top:"55%", left:"50%", position: "absolute"})
+      pcard2.animate({top:"55%", left:"50%"})
     }, 500);
     dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard1.animate({top:"15%", left:"39%", position: "absolute"})
+      dcard1.animate({top:"15%", left:"39%"})
     }, 1000);
     dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard2.animate({top:"15%", left:"50%", position: "absolute"})
+      dcard2.animate({top:"15%", left:"50%"})
     }, 1500);
   }
 };
@@ -266,9 +265,9 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
   var newCard = $("<div>").addClass("dealtPlayerCards");
   newCard.append($("<img>").attr("src", newCardObject.src));
   cardDiv.append(newCard);
-  setTimeout(function(){
+  // setTimeout(function(){
     newCard.switchClass("dealtPlayerCards", playerTakingCard.name + "HitCard"), 1000;
-  },300);
+  // },300);
   playerTakingCard.hand.total = playerTakingCard.handValue();
   if (this.isBusted(playerTakingCard)) {
     var playerHand = playerTakingCard.hand.cards;
