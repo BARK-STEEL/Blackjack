@@ -11,6 +11,7 @@
 - The app is available on laptop, desktop, iPhone and iPad
 
 ----------------------------------------------------------
+
 <p align="center">
 ![Image of Blackjack](images/BJIphone2.gif)
 </p>
