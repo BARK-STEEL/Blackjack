@@ -12,10 +12,7 @@
 
 ----------------------------------------------------------
 
-<p align="center">
 ![Image of Blackjack](images/BJIphone2.gif)
-</p>
-
 
 ##User Stories
 
