@@ -9,6 +9,7 @@
   * An unmatched blackjack on the initial deal pays 3/2 odds
   * The player has the option to "double-down", or double the bet and receive one additional card
   * A tie or push results in the bet being returned to the player
+  * Like many casinos, the deck is shuffled when 75% of the cards have been dealt. Later version will support the option to play with multiple decks. 
 - When the player goes broke, they are given the option to buy back in
 - Enhanced functionality will be included in later versions of the app, such as the option to "split" -  or play two separate hands when dealt two cards with the same number
 - Later versions will also provide complete functionality on all portable devices
