@@ -51,20 +51,20 @@ BlackjackGame.prototype.makeDeck = function makeDeck() {
     card = {};
     card.name = ace + suits[i];
     card.value = 11;
-    card.src = "images/classic-cards/" + card.name + ".png";
+    card.src = "images/playingCards/" + card.name + ".png";
     deck.push(card);
     for (var j = 0; j < faceCards.length; j++) {
       card = {};
       card.name = faceCards[j] + suits[i];
       card.value = 10;
-      card.src = "images/classic-cards/" + card.name + ".png";
+      card.src = "images/playingCards/" + card.name + ".png";
       deck.push(card);
     };
     for (var k = 2; k <= 10; k++) {
       card = {};
       card.name = k + suits[i];
       card.value = k;
-      card.src = "images/classic-cards/" + card.name + ".png"
+      card.src = "images/playingCards/" + card.name + ".png"
       deck.push(card);
     }
   }
@@ -176,7 +176,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     setTimeout(function(){
       pcard2.animate({top:"60%", left:"50%"})
     }, 500);
-    dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+    dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"20%", left:"30%"})
     }, 1000);
@@ -192,7 +192,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     setTimeout(function(){
       pcard2.animate({top:"55%", left:"50%"})
     }, 500);
-    dcard1.attr("src", "images/classic-cards/BlueFacedown.png").attr("class", "dealtPlayerCards");
+    dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"15%", left:"39%"})
     }, 1000);

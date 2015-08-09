@@ -34,7 +34,7 @@ img {
   position: fixed;
   left: 2.1%;
   top:4%;
-  box-shadow: 3px 3px 3px #313330;
+  box-shadow: 4px 4px 4px #313330;
 }
 .playerCard {
   display:inline-block;
@@ -306,7 +306,8 @@ and (max-device-width : 347px) {
     font-size: 4em;
   }
   .playerHitCard, .dealerHitCard {
-    position: absolute;
+    display:inline-block;
+    position: relative;
   }
 }
 @media (min-width: 600px) and (max-width: 800px){
