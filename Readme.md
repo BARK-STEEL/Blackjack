@@ -31,7 +31,7 @@ http://skipteel.github.io/Blackjack/
 
 ##Wireframe
 
-![Image of wireframe](images/wireframe.jpg)
+![Image of wireframe](images/wireframe.JPG)
 
 ##User Stories
 
