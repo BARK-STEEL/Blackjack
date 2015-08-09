@@ -3,9 +3,11 @@
 - Blackjack is a game of chance
 - The aim of the game is to obtain a higher score than the dealer, without going over 21
 
-![Image of Blackjack](images/blackjackIphoneGif.gif)
+![Image of Blackjack](images/BJIphone2.gif)
+
 ![Image of Blackjack](images/BJMac.gif)
-![Image of Blackjack](images/BlackJack2.gif)
+
+
 
 
 
@@ -20,5 +22,8 @@
 7. As a user, I want to be able to split if I have two of the same number, so that I can try and win with two different hands.
 8. As a user, I want to be able to double-down and get one more card, so that I can try to win double the money.
 9. As a user, I want to be able to see the cards being dealt from a deck, so that I can feel more like I am in an actual casino.
+![Image of Blackjack](images/BJIphone.gif)
+
+![Image of Blackjack](images/BJMac2.gif)
 
 <!-- Technology -->
