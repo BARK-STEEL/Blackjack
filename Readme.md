@@ -65,7 +65,7 @@ BlackjackGame.prototype.checkForAce = function checkForAce(playerTakingCard) {
   }
 };
 ```
-* `getHand()` returns a hand to the player or dealer. The returned hand is an object with an array of cards that initially contains two randomly drawn card objects. The object also contains a hand total, which is calculated in a separate function.
+* `getHand()` returns a hand to the player or dealer. The returned hand is an object with an array of cards that initially contains two randomly drawn card objects. The object also contains a hand total, which is thereafter calculated in a separate function.
 
 ```
 BlackjackGame.prototype.getHand = function getHand (playerorDealer) {
@@ -78,7 +78,7 @@ BlackjackGame.prototype.getHand = function getHand (playerorDealer) {
 };
 ```
 
-* `playerWins()` is called when the player has won the hand. A message is displayed, the bankroll property is adjusted to include the hand's winnings, the bankroll display is updates, and the listeners are reset.
+* `playerWins()` is called when the player has won the hand. A message is displayed, the bankroll property is adjusted to include the hand's winnings, the bankroll display is updated, and the listeners are reset.
 
 ```
 BlackjackGame.prototype.playerWins = function playerWins () {
