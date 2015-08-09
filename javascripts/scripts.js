@@ -265,9 +265,9 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
   var newCard = $("<div>").addClass("dealtPlayerCards");
   newCard.append($("<img>").attr("src", newCardObject.src));
   cardDiv.append(newCard);
-  // setTimeout(function(){
-    newCard.switchClass("dealtPlayerCards", playerTakingCard.name + "HitCard"), 1000;
-  // },300);
+  setTimeout(function(){
+    newCard.switchClass("dealtPlayerCards", playerTakingCard.name + "HitCard");
+  },300);
   playerTakingCard.hand.total = playerTakingCard.handValue();
   if (this.isBusted(playerTakingCard)) {
     var playerHand = playerTakingCard.hand.cards;
