@@ -20,6 +20,19 @@
 
 ![Image of Blackjack](images/BJIphone2.gif)
 
+
+---
+
+##url
+
+http://skipteel.github.io/Blackjack/
+
+---
+
+##Wireframe
+
+![Image of wireframe](images/wireframe.jpg)
+
 ##User Stories
 
 1. As a user, I want to be able to take another card, so that I can try to get a tally closer to 21.
@@ -90,5 +103,3 @@ BlackjackGame.prototype.playerWins = function playerWins () {
 ```
 
 ![Image of Blackjack](images/BJMac2.gif)
-
-<!-- Technology -->
