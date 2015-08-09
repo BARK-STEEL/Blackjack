@@ -4,6 +4,9 @@
 - The aim of the game is to obtain a higher score than the dealer, without going over 21
 
 ![Image of Blackjack](images/blackjackIphoneGif.gif)
+![Image of Blackjack](images/BJMac.gif)
+![Image of Blackjack](images/BlackJack2.gif)
+
 
 
 ##User Stories
