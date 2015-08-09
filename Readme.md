@@ -3,13 +3,14 @@
 - Blackjack is a game of chance and skill, and in this exciting version of the game, one player is pitted against the dealer
 - The aim of the game is to obtain a higher score than the dealer, without going over 21
 - Like most casinos, a minimum bet of $10 is required to play a hand, and the player can increase or decrease the bet in increments of $10, up to the amount left in the bankroll.
+- The player has the option to cash out at any point, and a message will display the profit or loss for the session
 - There are several general rules of the game whose logic are built into the app:
   * The dealer must hit on a 16 and stand on a 17
   * An ace can be used as a 1 or an 11, and the logic automatically decides which is appropriate
   * An unmatched blackjack on the initial deal pays 3/2 odds
   * The player has the option to "double-down", or double the bet and receive one additional card
   * A tie or push results in the bet being returned to the player
-  * Like many casinos, the deck is shuffled when 75% of the cards have been dealt. Later version will support the option to play with multiple decks. 
+  * Like many casinos, the deck is shuffled when 75% of the cards have been dealt. Later version will support the option to play with multiple decks.
 - When the player goes broke, they are given the option to buy back in
 - Enhanced functionality will be included in later versions of the app, such as the option to "split" -  or play two separate hands when dealt two cards with the same number
 - Later versions will also provide complete functionality on all portable devices
@@ -46,6 +47,47 @@
 ![Image of Blackjack](images/BJIphone.gif)
 
 ---
+##Code Examples
+
+* `checkForAce()` is called during each draw of a card following the initial deal. If the hand's value is over 21, the hand is checked for an ace, and if one is found, its value is changed from an eleven to a one. If more than one ace is found, only the first one whose value is an eleven is affected.
+
+```
+BlackjackGame.prototype.checkForAce = function checkForAce(playerTakingCard) {
+  if (this.isBusted(playerTakingCard)) {
+    var playerHand = playerTakingCard.hand.cards;
+    for (var i = 0; i < playerHand.length; i++){
+      if (playerHand[i].name.charAt(0)==='A' && playerHand[i].value === 11){
+        playerHand[i].value = 1;
+        playerTakingCard.hand.total = playerTakingCard.handValue();
+        break;
+      }
+    }
+  }
+};
+```
+* `getHand()` returns a hand to the player or dealer. The returned hand is an object with an array of cards that initially contains two randomly drawn card objects. The object also contains a hand total, which is calculated in a separate function.
+
+```
+BlackjackGame.prototype.getHand = function getHand (playerorDealer) {
+  var hand = {};
+  hand.cards = []
+  hand.cards.push(this.dealRandomCard());
+  hand.cards.push(this.dealRandomCard());
+  hand.total = hand.cards[0].value + hand.cards[1].value;
+  return hand;
+};
+```
+
+* `playerWins()` is called when the player has won the hand. A message is displayed, the bankroll property is adjusted to include the hand's winnings, the bankroll display is updates, and the listeners are reset.
+
+```
+BlackjackGame.prototype.playerWins = function playerWins () {
+  this.outcomeMessage("YOU WIN!");
+  this.bankRoll += 2*this.bet;
+  this.updateBankRoll();
+  this.resetListeners();
+};
+```
 
 ![Image of Blackjack](images/BJMac2.gif)
 
