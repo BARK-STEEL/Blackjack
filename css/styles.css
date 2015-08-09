@@ -242,6 +242,17 @@ button:active {
     padding-top:.3%;
     padding-bottom:.3%;
   }
+  #dealCards {
+    padding:10px 20px;
+  }
+  #cashOutDiv {
+    position:absolute;
+    right: 30%;
+    bottom: 3%;
+    float:none;
+    margin:0;
+    vertical-align: top;
+  }
 }
 @media only screen
 and (min-device-width : 320px)
@@ -272,7 +283,7 @@ and (max-device-width : 347px) {
   top: 32%;
   }
   button {
-    padding: 5px 10px;
+    padding: 5px 20px;
     font-size: .7em;
   }
   /*.dealtPlayerCards {
@@ -312,7 +323,7 @@ and (max-device-width : 347px) {
     font-size: 1.4em;
   }
   #dealCards {
-    padding: 2%;
+    padding:5px 20px;
   }
   #betDiv {
     margin-right: 8%;
