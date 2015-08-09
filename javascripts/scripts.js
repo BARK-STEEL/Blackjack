@@ -19,6 +19,30 @@ function Player (name) {
 
 // TEST: *** Player constructor returns a player with a hand and adds the calculate hand total to the hand object.
 
+BlackjackGame.prototype.init = function init() {
+
+  this.updateBankRoll();
+  this.updateBetAmount();
+  this.bindDealButton();
+  this.bindIncreaseBetButton();
+  this.bindDecreaseBetButton();
+};
+
+// TEST: *** init() sets up initial game state, with dealer and player cards
+
+BlackjackGame.prototype.updateBankRoll = function updateBankRoll() {
+  var wallet = $("#wallet");
+  wallet.text("Bankroll: $" + this.bankRoll);
+};
+
+// TEST: *** updateBankroll() updates the bankroll on screen
+
+BlackjackGame.prototype.updateBetAmount = function updateBetAmount() {
+  var betSize = $("#betAmount");
+  betSize.text("Bet: $" + this.bet);
+};
+// TEST: *** updateBetAmount() updates the bet amount on screen
+
 BlackjackGame.prototype.getHand = function getHand (playerorDealer) {
   var hand = {};
   hand.cards = []
@@ -38,7 +62,7 @@ Player.prototype.handValue = function handValue() {
   return total;
 };
 
-//TEST: *** handValue() calculate the value of a hand
+// TEST: *** handValue() calculate the value of a hand
 
 BlackjackGame.prototype.makeDeck = function makeDeck() {
 
@@ -73,17 +97,6 @@ BlackjackGame.prototype.makeDeck = function makeDeck() {
 
 // TEST: *** makeDeck() creates a deck and binds cards to value and image
 
-BlackjackGame.prototype.init = function init() {
-
-  this.updateBankRoll();
-  this.updateBetAmount();
-  this.bindDealButton();
-  this.bindIncreaseBetButton();
-  this.bindDecreaseBetButton();
-};
-
-// TEST: *** init() sets up initial game state, with dealer and player cards
-
 BlackjackGame.prototype.shuffleDeck = function shuffleDeck(deck) {
   var shuffledDeck = [];
   var j = deck.length;
@@ -114,7 +127,6 @@ function isiPhone(){
     );
 };
 
-
 BlackjackGame.prototype.dealCards = function dealCards() {
   $("#dealCards").off('click');
   $("#increaseBet").off('click');
@@ -138,9 +150,25 @@ BlackjackGame.prototype.dealCards = function dealCards() {
   }, 2000);
   this.bindHitButton();
   this.bindStandButton();
+  this.bindDoubleDownButton();
 };
 
-//TEST: *** dealCards() deals cards
+// TEST: *** dealCards() deals cards
+
+BlackjackGame.prototype.isBlackjack = function isBlackjack() {
+  return this.player.hand.total === 21;
+};
+
+// TEST: *** isBlackjack sees if player has been dealt blackjack and returns true or false
+
+BlackjackGame.prototype.blackjack = function blackjack() {
+  this.outcomeMessage("BLACKJACK!!!");
+  this.bankRoll += 2.5*this.bet;
+  this.updateBankRoll();
+  this.resetListeners();
+};
+
+// TEST: *** blackjack() adds 3/2 winnings after hitting a blackjack
 
 BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   var pcard1 = $("#playerCard1>img");
@@ -176,7 +204,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     setTimeout(function(){
       pcard2.animate({top:"60%", left:"50%"})
     }, 500);
-    dcard1.attr("src", "images/redCardBack.png").attr("class", "dealtPlayerCards");
+    dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"20%", left:"30%"})
     }, 1000);
@@ -192,7 +220,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
     setTimeout(function(){
       pcard2.animate({top:"55%", left:"50%"})
     }, 500);
-    dcard1.attr("src", "images/redCardBack.png").attr("class", "dealtPlayerCards");
+    dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
       dcard1.animate({top:"15%", left:"39%"})
     }, 1000);
@@ -203,7 +231,7 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   }
 };
 
-//TEST: *** displayDealtCards() animates the original deal
+// TEST: *** displayDealtCards() animates the original deal
 
 BlackjackGame.prototype.bindDealButton = function bindDealButton() {
   var scope = this;
@@ -217,7 +245,7 @@ BlackjackGame.prototype.bindDealButton = function bindDealButton() {
   });
 };
 
-// TEST: *** bindBetButton() adds event listener for bet button
+// TEST: *** bindDealButton() adds event listener for deal button
 
 BlackjackGame.prototype.bindIncreaseBetButton = function bindIncreaseBetButton() {
   var scope = this;
@@ -228,9 +256,9 @@ BlackjackGame.prototype.bindIncreaseBetButton = function bindIncreaseBetButton()
       scope.updateBetAmount();
     }
   });
-}
+};
 
-//TEST: *** bindIncreaseBetButton()
+// TEST: *** bindIncreaseBetButton()
 
 BlackjackGame.prototype.bindDecreaseBetButton = function bindDecreaseBetButton() {
   var scope = this;
@@ -241,9 +269,9 @@ BlackjackGame.prototype.bindDecreaseBetButton = function bindDecreaseBetButton()
       scope.updateBetAmount();
     }
   });
-}
+};
 
-//TEST: *** bindDecreaseBetButton()
+// TEST: *** bindDecreaseBetButton()
 
 BlackjackGame.prototype.bindHitButton = function bindHitButton() {
   var scope = this;
@@ -269,6 +297,13 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
     newCard.switchClass("dealtPlayerCards", playerTakingCard.name + "HitCard");
   },300);
   playerTakingCard.hand.total = playerTakingCard.handValue();
+  this.checkForAce(playerTakingCard);
+  this.checkForBust(playerTakingCard);
+};
+
+// TEST: *** addCard() adds a card to a player's hand
+
+BlackjackGame.prototype.checkForAce = function checkForAce(playerTakingCard) {
   if (this.isBusted(playerTakingCard)) {
     var playerHand = playerTakingCard.hand.cards;
     for (var i = 0; i < playerHand.length; i++){
@@ -279,32 +314,49 @@ BlackjackGame.prototype.addCard = function addCard(playerTakingCard) {
       }
     }
   }
-  if (scope.isBusted(playerTakingCard) && playerTakingCard === scope.player) {
-    setTimeout(function() {
-      scope.outcomeMessage("BUSTED!");
-      scope.playerLoses();
-    }, 1000);
-      if (scope.bankRoll === 0) {
-        setTimeout(function() {
-          scope.outcomeMessage("You're out of money!");
-          var playAgain = prompt("Would you like to buy back in? Y for Yes or N for No");
-          if (playAgain.toUpperCase() === "Y") {
-            location.reload();
-          }
-        },2000);
-      }
+};
+
+// *** TEST: checkForAce checks for ace if over 21 and changes value to 1
+
+BlackjackGame.prototype.checkForBust = function checkForBust(playerTakingCard) {
+  var scope = this;
+  if (this.isBusted(playerTakingCard) && playerTakingCard === this.player) {
+    if (scope.bankRoll === 0) {
+      setTimeout(function() {
+        scope.noMoreMoney();
+      }, 1000);
+    } else {
+      setTimeout(function() {
+        scope.outcomeMessage("BUSTED!");
+        scope.playerLoses();
+      }, 1000);
+    }
   }
 };
-// TEST: *** addCard() adds a card to a player's hand
 
-BlackjackGame.prototype.outcomeMessage = function outcomeMessage(outcome) {
-  var message = $("#messages").text(outcome).css({display:"block"});
-  setTimeout(function(){
-    message.css({display:"none"});
-  }, 1500);
-}
+// TEST: *** checkForBust checks if player hand is busted
 
-// TEST: *** outcomeMessage() displays outcome of game
+BlackjackGame.prototype.noMoreMoney = function noMoreMoney() {
+  var message = $("#messages");
+  message.text("You're out of money! Would you like to buy back in?");
+  message.append($("<button>").attr("id", "yesButton").text("Yes").css({fontSize: ".8em", marginLeft: "10%"}));
+  message.append($("<button>").attr("id", "noButton").text("No").css({fontSize: ".8em"}));
+  message.css({fontSize: "4em", display:"block"});
+  $("#yesButton").on('click', function(){
+    location.reload();
+  });
+  $("#noButton").on('click', function(){
+    message.html("Thanks for playing!");
+    $("#hit>button").off('click');
+    $("#stand>button").off('click');
+    $("#double-down>button").off('click');
+    $("#dealCards").off('click');
+    $("#increaseBet").off('click');
+    $("#decreaseBet").off('click');
+  });
+};
+
+// TEST: noMoreMoney asks player if he/she wants to rebuy
 
 BlackjackGame.prototype.bindStandButton = function bindStandButton() {
   var scope = this;
@@ -323,78 +375,21 @@ BlackjackGame.prototype.bindSplitButton = function bindSplitButton() {
 // TEST: bindSplitButton() adds event listener for split button
 
 BlackjackGame.prototype.bindDoubleDownButton = function bindDoubleDownButton() {
-
+  var scope = this;
+  var doubleDown = $("#double-down>button");
+  doubleDown.on('click', function() {
+    scope.bankRoll -= scope.bet;
+    scope.bet *= 2;
+    scope.updateBetAmount();
+    scope.updateBankRoll();
+    scope.addCard(scope.player);
+    if (scope.player.hand.total < 22) {
+      scope.dealerHand();
+    }
+  })
 };
 
-// TEST: bindDoubleDownButton() adds event listener for double down button
-
-BlackjackGame.prototype.compareHands = function compareHands() {
-  var playerTotal = this.player.hand.total;
-  var dealerTotal =  this.dealer.hand.total
-  if (playerTotal > dealerTotal || dealerTotal > 21) {
-    this.playerWins();
-  } else if (playerTotal < dealerTotal) {
-    this.outcomeMessage("DEALER WINS!")
-    this.playerLoses();
-  } else if (playerTotal === dealerTotal) {
-    this.playersPush();
-  }
-};
-// TEST: *** compareHands() compares the dealer's hand to the player's hand, returns the winner, and shows the dealer's second card.
-
-BlackjackGame.prototype.playersPush = function playersPush() {
-  this.outcomeMessage("PUSH!");
-  this.bankRoll += this.bet;
-  this.updateBankRoll();
-  this.resetListeners();
-}
-
-//TEST: *** push displays push message and returns money to bankroll
-BlackjackGame.prototype.isBlackjack = function isBlackjack() {
-  return this.player.hand.total === 21;
-};
-
-//TEST: *** isBlackjack sees if player has been dealt blackjack and returns true or false
-
-BlackjackGame.prototype.isBusted = function isBusted(playerorDealer) {
-  return playerorDealer.hand.total > 21;
-};
-
-//TEST: *** isBusted() checks the players hand to see if it is over 21
-
-BlackjackGame.prototype.playerWins = function playerWins () {
-  this.outcomeMessage("YOU WIN!");
-  this.bankRoll += 2*this.bet;
-  this.updateBankRoll();
-  this.resetListeners();
-};
-//TEST: *** playerWins() adds winnings to bankRoll
-
-BlackjackGame.prototype.playerLoses = function playerLoses() {
-  this.resetListeners();
-}
-//TEST: playerLoses() resets Event Listeners
-BlackjackGame.prototype.blackjack = function blackjack() {
-  this.outcomeMessage("BLACKJACK!!!");
-  this.bankRoll += 2.5*this.bet;
-  this.updateBankRoll();
-  this.resetListeners();
-};
-
-//TEST: *** blackjack() adds 3/2 winnings after hitting a blackjack
-
-BlackjackGame.prototype.updateBankRoll = function updateBankRoll() {
-  var wallet = $("#wallet");
-  wallet.text("Bankroll: $" + this.bankRoll);
-};
-
-//TEST: *** updateBankroll() updates the bankroll on screen
-
-BlackjackGame.prototype.updateBetAmount = function updateBetAmount() {
-  var betSize = $("#betAmount");
-  betSize.text("Bet: $" + this.bet);
-};
-//TEST: *** updateBetAmount() updates the bet amount on screen
+// TEST: *** bindDoubleDownButton() adds event listener for double down button
 
 BlackjackGame.prototype.dealerHand = function dealerHand() {
   var scope = this;
@@ -410,18 +405,80 @@ BlackjackGame.prototype.dealerHand = function dealerHand() {
   }, 1000);
 };
 
-//TEST: *** dealerHand() adds cards to dealer hand until outcome is reached
+// TEST: *** dealerHand() adds cards to dealer hand until outcome is reached
+
+BlackjackGame.prototype.compareHands = function compareHands() {
+  var playerTotal = this.player.hand.total;
+  var dealerTotal =  this.dealer.hand.total
+  if (playerTotal > dealerTotal || dealerTotal > 21) {
+    this.playerWins();
+  } else if (playerTotal < dealerTotal) {
+    this.outcomeMessage("DEALER WINS!")
+    this.playerLoses();
+  } else if (playerTotal === dealerTotal) {
+    this.playersPush();
+  }
+};
+
+// TEST: *** compareHands() compares the dealer's hand to the player's hand, returns the winner, and shows the dealer's second card.
+
+BlackjackGame.prototype.playerWins = function playerWins () {
+  this.outcomeMessage("YOU WIN!");
+  this.bankRoll += 2*this.bet;
+  this.updateBankRoll();
+  this.resetListeners();
+};
+
+// TEST: *** playerWins() adds winnings to bankRoll
+
+BlackjackGame.prototype.playerLoses = function playerLoses() {
+  if (this.bankRoll === 0) {
+    setTimeout(function() {
+      scope.noMoreMoney();
+    }, 1000);
+  } else {
+    this.resetListeners();
+  }
+}
+
+// TEST: playerLoses() resets Event Listeners
+
+BlackjackGame.prototype.playersPush = function playersPush() {
+  this.outcomeMessage("PUSH!");
+  this.bankRoll += this.bet;
+  this.updateBankRoll();
+  this.resetListeners();
+}
+
+// TEST: *** push displays push message and returns money to bankroll
+
+BlackjackGame.prototype.isBusted = function isBusted(playerorDealer) {
+  return playerorDealer.hand.total > 21;
+};
+
+// TEST: *** isBusted() checks the players hand to see if it is over 21
+
+BlackjackGame.prototype.outcomeMessage = function outcomeMessage(outcome) {
+  var message = $("#messages").text(outcome).css({display:"block"});
+  setTimeout(function(){
+    message.css({display:"none"});
+  }, 1500);
+}
+
+// TEST: *** outcomeMessage() displays outcome of game
 
 BlackjackGame.prototype.resetListeners = function resetListeners() {
   $("#hit>button").off('click');
   $("#stand>button").off('click');
+  $("#double-down>button").off('click');
   this.bindDealButton();
   this.bindIncreaseBetButton();
   this.bindDecreaseBetButton();
+  this.bet = 10;
+  this.updateBetAmount();
 }
 
-//TEST: *** resetListeners resets listeners
-
+// TEST: *** resetListeners resets event listeners to pre-dealt state
 
 $(document).on('ready', function(){
   var game = new BlackjackGame()
