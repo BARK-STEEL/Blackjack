@@ -171,34 +171,34 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   if(isiPhone()){
     playerButtons.css({position: "absolute", bottom:"4%"});
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
-    pcard1.animate({top:"60%", left:"30%"});
+    pcard1.animate({top:"60%", left:"30%", position: absolute});
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      pcard2.animate({top:"60%", left:"50%"})
+      pcard2.animate({top:"60%", left:"50%", position: absolute})
     }, 500);
     dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard1.animate({top:"20%", left:"30%"})
+      dcard1.animate({top:"20%", left:"30%", position: absolute})
     }, 1000);
     dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard2.animate({top:"20%", left:"50%"})
+      dcard2.animate({top:"20%", left:"50%", position: absolute})
     }, 1500);
   } else {
     playerButtons.css({position: "absolute", bottom:"4%"});
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
-    pcard1.animate({top:"55%", left:"39%"});
+    pcard1.animate({top:"55%", left:"39%", position: absolute});
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      pcard2.animate({top:"55%", left:"50%"})
+      pcard2.animate({top:"55%", left:"50%", position: absolute})
     }, 500);
     dcard1.attr("src", "images/cupidCard.png").attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard1.animate({top:"15%", left:"39%"})
+      dcard1.animate({top:"15%", left:"39%", position: absolute})
     }, 1000);
     dcard2.attr("src", this.dealer.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
-      dcard2.animate({top:"15%", left:"50%"})
+      dcard2.animate({top:"15%", left:"50%", position: absolute})
     }, 1500);
   }
 };
