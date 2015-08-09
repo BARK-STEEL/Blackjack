@@ -187,7 +187,8 @@ BlackjackGame.prototype.displayDealtCards = function displayDealtCards () {
   } else {
     playerButtons.css({position: "absolute", bottom:"4%"});
     pcard1.attr("src", this.player.hand.cards[0].src).attr("class", "dealtPlayerCards");
-    pcard1.animate({top:"55%", left:"39%", position: "absolute"});
+    pcard1.animate({top:"55%", left:"39%",position: "relative"});
+    // pcard1.css({position: "absolute"})
     pcard2.attr("src", this.player.hand.cards[1].src).attr("class", "dealtPlayerCards");
     setTimeout(function(){
       pcard2.animate({top:"55%", left:"50%", position: "absolute"})

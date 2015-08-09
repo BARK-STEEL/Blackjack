@@ -177,7 +177,7 @@ button:active {
     height:120px;
   }
   .dealtPlayerCards {
-    position: fixed;
+    position: absolute;
     left: 10%;
     top:10%;
   }
@@ -305,9 +305,15 @@ and (max-device-width : 347px) {
   #messages {
     font-size: 4em;
   }
-  .playerHitCard, .dealerHitCard {
-    display:inline-block;
+  #playerHitCards, #dealerHitCards {
+    width:100%;
+    z-index:-1;
+  }
+  .playerHitCard>img, .dealerHitCard>img {
+    display:inline;
     position: relative;
+    margin-right: -20%;
+    z-index:-1;
   }
 }
 @media (min-width: 600px) and (max-width: 800px){
